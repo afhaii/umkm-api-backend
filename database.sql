@@ -1,0 +1,14 @@
+-- Database schema for UMKM API
+CREATE DATABASE IF NOT EXISTS `db_umkm_api`;
+USE `db_umkm_api`;
+
+CREATE TABLE IF NOT EXISTS `umkm` (
+  `id` INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `nama_umkm` VARCHAR(255) NOT NULL,
+  `pemilik` VARCHAR(255) DEFAULT NULL,
+  `alamat` TEXT DEFAULT NULL,
+  `kategori` VARCHAR(100) DEFAULT NULL,
+  `kontak` VARCHAR(50) DEFAULT NULL,
+  `created_at` DATETIME DEFAULT NULL,
+  `updated_at` DATETIME DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
