@@ -6,20 +6,28 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 
-$routes->group('api', static function ($routes) {
 
-    // GET: Mengambil seluruh data UMKM
+$routes->group('api', ['filter' => 'cors'], static function ($routes) {
+
+    // GET
     $routes->get('umkm', 'Api\UmkmController::index');
 
-    // GET: Mengambil satu data UMKM berdasarkan ID
-    $routes->get('umkm/(:num)', 'Api\UmkmController::show/$1');
-
-    // POST: Menambahkan data UMKM
+    // POST
     $routes->post('umkm', 'Api\UmkmController::create');
 
-    // PUT: Memperbarui data UMKM berdasarkan ID
+    // PUT
     $routes->put('umkm/(:num)', 'Api\UmkmController::update/$1');
 
-    // DELETE: Menghapus data UMKM berdasarkan ID
+    // DELETE
     $routes->delete('umkm/(:num)', 'Api\UmkmController::delete/$1');
+
+    // OPTIONS: CORS Preflight
+    $routes->options('umkm', static function () {
+        return service('response')->setStatusCode(204);
+    });
+
+    $routes->options('umkm/(:num)', static function () {
+        return service('response')->setStatusCode(204);
+    });
+
 });
